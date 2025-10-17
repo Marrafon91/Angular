@@ -1,6 +1,6 @@
 <div class="container">
     <div class="form-box">
-        <form #frm="ngForm">
+        <form #frm="ngForm" (ngSubmit)="calcularResultado()">
             <h2>Calculadora</h2>
             <label for="numero1">Número 1</label>
             <input type="number" name="numero1" id="numero1" [(ngModel)]="numero1">
@@ -8,10 +8,8 @@
             <label for="numero2">Número 2</label>
             <input type="number" name="numero2" id="numero2" [(ngModel)]="numero2">
 
-            <button class="soma" type="button" (click) ="somarResultado()">Somar</button>
-            <button class="sub" type="button" (click) ="subtrairResultado()">Subtrair</button>
-            <button class="mult" type="button" (click) ="mutiplicarResultado()">Mutiplicar</button>
-            <button class="div" type="button" (click) ="divirResultado()">Dividir</button>
+            <button type="submit">Calcular</button>
+            
         </form>
 
         <div class="result-display">
@@ -20,4 +18,4 @@
 
     </div>
 
-</div>
+</div>submit

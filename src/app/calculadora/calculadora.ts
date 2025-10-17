@@ -13,16 +13,8 @@ export class Calculadora {
   numero2: number = 0;
   resultado: number = 0;
 
-  somarResultado() {
+  calcularResultado() {
     this.resultado = this.numero1 + this.numero2;
   }
-  subtrairResultado() {
-    this.resultado = this.numero1 - this.numero2;
-  }
-  mutiplicarResultado() {
-    this.resultado = this.numero1 * this.numero2;
-  }
-  divirResultado() {
-    this.resultado = this.numero1 / this.numero2;
-  }
+  
 }

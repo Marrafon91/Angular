@@ -50,7 +50,7 @@ input[type="number"] {
 
 button {
     margin: 2px;
-    width: 33%;
+    width: 75%;
     padding: 10px;
     background-color: #2b039e;
     color: #fff;
@@ -62,31 +62,6 @@ button {
 
 button:hover {
     background-color: #0056b3;
-}
-
-.soma {
-    background-color: #2b039e;
-}
-.soma:hover {
-    background-color: #2a039e80;
-}
-.sub {
-    background-color: #d28724;
-}
-.sub:hover {
-    background-color: #d28724ae;
-}
-.mult {
-    background-color: #039e39;
-}
-.mult:hover {
-    background-color: #039e399c;
-}
-.div {
-    background-color: #9e034e;
-}
-.div:hover {
-    background-color: #9e034ea2;
 }
 
 .result-display {
