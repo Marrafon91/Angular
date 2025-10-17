@@ -12,10 +12,22 @@
             
         </form>
 
-        <div class="result-display">
-            <p>Resultado: <span id="result">{{ resultado }}</span></p>
-        </div>
+        <!-- <div class="result-display" *ngIf="resultado">
+            <p>Seu resultado esta abaixo: </p>
+        </div>  ngIf foi descontinuado--> 
 
+        @if (resultado) {
+            <div class="result-display">
+                <p>Seu resultado esta abaixo: </p>
+                <p>Resultado: <span id="result">{{ resultado }}</span></p>
+            </div>            
+        } @else {
+            <div class="result-display">
+                <p>Seu resultado aparecerá aqui.</p>
+            </div>
+        }
+
+        
     </div>
 
 </div>submit
