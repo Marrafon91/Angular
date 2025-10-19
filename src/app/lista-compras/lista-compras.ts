@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms'
+import { FormsModule } from '@angular/forms';
+import { ItemLista } from './itemLista';
 
 @Component({
   selector: 'app-lista-compras',
@@ -10,11 +11,17 @@ import { FormsModule } from '@angular/forms'
 export class ListaCompras {
 
   item: string = '';
-
+  lista: ItemLista[] = [];
 
   adicionarItem() {
-    console.log("item recebido ", this.item);
+    let itemLista = new ItemLista();
+    itemLista.nome = this.item;
+    itemLista.id = this.lista.length +1;
+
+    this.lista.push(itemLista);
+
     this.item = '';
+    console.table(this.lista)
   }
 
 }
