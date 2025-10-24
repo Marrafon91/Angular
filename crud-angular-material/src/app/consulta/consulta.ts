@@ -29,6 +29,7 @@ import { ɵEmptyOutletComponent } from "@angular/router";
 })
 export class Consulta implements OnInit {
   
+  nomeBusca: string = '';
   listaClientes: Cliente[] = [];
   colunasTabela: string[] = ["id", "nome", "cpf", "dataNascimento", "email"];
 
@@ -38,6 +39,10 @@ export class Consulta implements OnInit {
 
   ngOnInit() {
     this.listaClientes = this.service.pesquisarClientes('');
+  }
+
+  pesquisar() {
+    this.listaClientes = this.service.pesquisarClientes(this.nomeBusca);
   }
 
 }
