@@ -32,6 +32,7 @@ export class Consulta implements OnInit {
   nomeBusca: string = '';
   listaClientes: Cliente[] = [];
   colunasTabela: string[] = ["id", "nome", "cpf", "dataNascimento", "email", "acoes"];
+  deletando: boolean = false;
 
   constructor(
     private service: ClienteService,
@@ -50,7 +51,16 @@ export class Consulta implements OnInit {
 
   preparaEditar(id: string) {
     this.router.navigate(['/cadastro'], { queryParams: {"id": id} })
+  }
 
+  preparaDeletar() {
+    this.deletando = true;
+  }
+
+  deletar(cliente: Cliente) {
+    this.service.deletar(cliente);
+    this.listaClientes = this.service.pesquisarClientes('');
+    this.deletando = false
   }
 
 }
