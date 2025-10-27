@@ -68,15 +68,15 @@
                                 Editar
                             </button>
                             
-                            @if (!deletando) {
-                                <button type="button" mat-button (click)="preparaDeletar()">
+                            @if (!cliente.deletando) {
+                                <button type="button" mat-button (click)="preparaDeletar(cliente)">
                                    <mat-icon fontIcon="delete"></mat-icon>
                                    Deletar
                                </button>
                             } @else {
-                                <button type="button" mat-button (click)="deletar(cliente)">
+                                <button type="button" mat-raised-button color="warn" (click)="deletar(cliente)">
                                    <mat-icon fontIcon="question_mark"></mat-icon>
-                                   Confirma
+                                   Confirmar
                                </button>
                             }
                         </td>
