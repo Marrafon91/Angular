@@ -1,4 +1,3 @@
-import { Data } from '@angular/router';
 import { v4 as uuid } from 'uuid'
 
 export class Cliente {
@@ -6,7 +5,7 @@ export class Cliente {
     nome?: string;
     email?: string;
     cpf?: string;
-    dataNascimento?: Data;
+    dataNascimento?: string;
     deletando: boolean = false;
 
     static newClient() {
