@@ -12,7 +12,6 @@ import { ClienteService } from '../cliente.service';
 import { Cliente } from '../cadastro/cliente';
 import { Router } from "@angular/router";
 
-
 @Component({
   selector: 'app-consulta',
   imports: [
@@ -62,8 +61,6 @@ export class Consulta implements OnInit {
   deletar(cliente: Cliente) {
     this.service.deletar(cliente);
     this.listaClientes = this.service.pesquisarClientes('');
-    this.snack.open('Item deletado com sucesso!', 'OK!')
-    
+    this.snack.open('Item deletado com sucesso!', 'OK!')    
   }
-
 }
