@@ -1,0 +1,74 @@
+<mat-card class="example-card" appearance="outlined">
+  <mat-card-header>
+    <div mat-card-avatar></div>
+    <mat-card-title>
+      <span>Angular</span>
+    </mat-card-title>
+    <mat-card-subtitle>Estudo sobre Angular</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <p>
+      <strong>1. Introdução</strong>
+    </p>
+    <p>
+      Neste estudo vamos focar a criação de uma <strong>tela de cadastro de cliente</strong>,
+      usando <strong>Angular + Angular Material</strong>, dentro do projeto que você já tem:
+      <code>crud-angular-material</code>. A ideia é praticar os componentes de interface,
+      formulários reativos, validações, integração com serviço/fake backend e utilização dos
+      componentes visuais do Angular Material.
+    </p>
+
+    <p><strong>2. Objetivos da tela</strong></p>
+    <ul>
+      <li>Permitir ao usuário incluir um cliente com dados como nome, e-mail, cpf e data de nascimento.</li>
+      <li>Permitir ao usuário editar os dados de um cliente existente.</li>
+      <li>Validar os campos do formulário (por exemplo: e-mail válido, cpf obrigatório, data mínima).</li>
+      <li>Exibir feedback visual ao usuário (via componentes Angular Material como <code>MatSnackBar</code>, <code>MatDialog</code>, <code>MatFormField</code>, <code>MatInput</code> etc.).</li>
+      <li>Estilização e layout responsivo usando Angular Material e possivelmente <code>@angular/flex-layout</code>.</li>
+      <li>Integrar com um serviço (pode ser simulado) para gravar/ler dados de cliente.</li>
+    </ul>
+
+    <p><strong>3. Estrutura e organização do projeto</strong></p>
+    <p>No repositório <code>crud-angular-material</code>, recomenda-se:</p>
+    <ul>
+      <li>Criar um módulo específico para a funcionalidade de cliente, por exemplo <code>cliente.module.ts</code>, que declare componentes como <code>cliente-cadastro.component.ts</code> e <code>cliente-lista.component.ts</code>.</li>
+      <li>No módulo principal (<code>app.module.ts</code>) importar o módulo de cliente.</li>
+      <li>Criar também um módulo para o Material: <code>material.module.ts</code>, que exporta todos os módulos do Angular Material que serão utilizados.</li>
+      <li>Criar um serviço <code>cliente.service.ts</code> que forneça métodos como <code>listar()</code>, <code>obterPorId()</code>, <code>salvar()</code> e <code>excluir()</code>.</li>
+    </ul>
+
+    <p><strong>4. Layout da tela de cadastro</strong></p>
+    <ul>
+      <li>Uma <code>MatToolbar</code> no topo com o título “Cadastro de Cliente”.</li>
+      <li>Um formulário dentro de um cartão (<code>MatCard</code>):</li>
+      <ul>
+        <li>Campo Nome → <code>MatFormField</code> + <code>MatInput</code></li>
+        <li>Campo E-mail → <code>MatFormField</code> + <code>MatInput</code> (tipo e-mail)</li>
+        <li>Campo cpf → <code>MatFormField</code> + <code>MatInput</code></li>
+        <li>Campo Data de Nascimento → <code>MatFormField</code> + <code>MatDatepicker</code></li>
+      </ul>
+      <li>Botões no final do formulário: “Salvar” (botão primário) e “Cancelar” (botão simples).</li>
+      <li>Feedback: ao salvar com sucesso, utilizar <code>MatSnackBar</code> com a mensagem “Cliente salvo com sucesso”.</li>
+      <li>Em modo de edição: pré-popular os campos com dados existentes.</li>
+    </ul>
+
+    <p><strong>5. Validações do formulário</strong></p>
+    <ul>
+      <li><code>nome</code>: obrigatório, mínimo de 3 caracteres.</li>
+      <li><code>email</code>: obrigatório, padrão e-mail válido.</li>
+      <li><code>cpf</code>: obrigatório.</li>
+      <li><code>dataNascimento</code>: obrigatório, e deve ser uma data anterior à data atual.</li>
+    </ul>
+  </mat-card-content>
+
+  <mat-card-footer class="footer">
+    <p>
+      Desenvolvido por 
+      <a href="https://github.com/Marrafon91" target="_blank" rel="noopener noreferrer">
+        <mat-icon fontIcon="code"></mat-icon>
+        <strong>@Marrafon91</strong>
+      </a>
+    </p>
+  </mat-card-footer>
+</mat-card>
