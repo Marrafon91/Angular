@@ -10,7 +10,9 @@ import { MatSnackBar } from '@angular/material/snack-bar'
 import { Cliente } from './cliente';
 import { ClienteService } from '../cliente.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NgxMaskDirective, provideNgxMask } from 'ngx-mask'
+import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
+import { BrasilapiService } from '../brasilapi.service';
+import { Estado, Municipio } from '../brasil.models';
 
 @Component({
   selector: 'app-cadastro',
@@ -35,14 +37,17 @@ export class Cadastro implements OnInit {
   cliente: Cliente = Cliente.newClient();
   atualizando: boolean = false;
   snack: MatSnackBar = inject(MatSnackBar);
+  estados: Estado[] = [];
+  municipio: Municipio[] = [];
 
   constructor
-  (private service: ClienteService,
-   private route: ActivatedRoute,
-   private router: Router
+  (   private service: ClienteService,
+      private brasilApiService: BrasilapiService,
+      private route: ActivatedRoute,
+      private router: Router
   ) {
     
-  }
+  };
 
   ngOnInit(): void {
       this.route.queryParamMap.subscribe((query: any) => {
@@ -59,6 +64,16 @@ export class Cadastro implements OnInit {
           }
         }
       })
+
+      this.carregarUFs();
+  }
+
+  carregarUFs() {
+    // observable subscribe
+    this.brasilApiService.listarUFs().subscribe({
+      next: listaEstados => this.estados = listaEstados,
+      error: erro => console.log("ocorreu um erro: ", erro)
+    });
   }
 
   salvar() {
