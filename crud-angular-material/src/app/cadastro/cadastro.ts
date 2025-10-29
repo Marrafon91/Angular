@@ -7,7 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBar } from '@angular/material/snack-bar'
-import { MatSelectModule } from '@angular/material/select'
+import { MatSelectChange, MatSelectModule } from '@angular/material/select'
 import { Cliente } from './cliente';
 import { ClienteService } from '../cliente.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -65,12 +65,16 @@ export class Cadastro implements OnInit {
             
             this.atualizando = true;
             this.cliente = clienteEncontrado;
-          }
-        }
-      })
+            if (this.cliente.uf) {
+              const event = { value: this.cliente.uf }
+              this.carregarMunicipios(event as MatSelectChange);              
+            }
+          };
+        };
+      });
 
       this.carregarUFs();
-  }
+  };
 
   carregarUFs() {
     // observable subscribe
@@ -78,7 +82,16 @@ export class Cadastro implements OnInit {
       next: listaEstados => this.estados = listaEstados,
       error: erro => console.log("ocorreu um erro: ", erro)
     });
-  }
+  };
+
+  carregarMunicipios(event: MatSelectChange) {
+    const ufSelecionada = event.value;
+    this.brasilApiService.listarMunicipios(ufSelecionada).subscribe({
+      next: listaMunicipios => this.municipio = listaMunicipios,
+      error: erro => console.log("ocorreu um erro: ", erro)
+    });
+    
+  };
 
   salvar() {
     if (!this.atualizando) {
@@ -89,10 +102,10 @@ export class Cadastro implements OnInit {
       this.service.atualizar(this.cliente)
       this.router.navigate(['/consulta'])
       this.mostrarMensagem('Atualizado com sucesso!')
-    }
-  }
+    };
+  };
 
   mostrarMensagem(mensagem: string) {
     this.snack.open(mensagem, "OK!")
-  }
-}
+  };
+};

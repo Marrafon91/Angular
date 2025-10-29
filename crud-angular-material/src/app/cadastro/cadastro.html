@@ -56,9 +56,22 @@
                         <div fxLayout="column" fxFlex="400px">
                             <mat-form-field class="full-width">
                                 <mat-label>UF: *</mat-label>
-                                    <mat-select>
+                                    <mat-select [(value)]="cliente.uf" (selectionChange)="carregarMunicipios($event)">
                                         <mat-option *ngFor="let uf of estados" [value]="uf.sigla">
-                                            {{uf.sigla}} {{ uf.nome}}
+                                            {{uf.sigla}} - {{ uf.nome}}
+                                        </mat-option>                      
+                                    </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="16px">
+                        <div fxLayout="column" fxFlex="400px">
+                            <mat-form-field class="full-width">
+                                <mat-label>Municipio: *</mat-label>
+                                    <mat-select [(value)]="cliente.municipio">
+                                        <mat-option *ngFor="let m of municipio" [value]="m.nome">
+                                            {{ m.nome}}
                                         </mat-option>                      
                                     </mat-select>
                             </mat-form-field>
@@ -68,7 +81,7 @@
                 </mat-card-content>
                 <mat-card-actions>
                     @if (!atualizando) {
-                        <button mat-flat-button color="primary" class="ml-5" type="submit">
+                        <button mat-flat-button color="primary" class="ml-5 toolbar-button" type="submit">
                             <mat-icon fontIcon="save"></mat-icon>
                             Salvar
                         </button>
@@ -78,7 +91,7 @@
                             Atualizar
                         </button>
                     }
-                    <button mat-flat-button color="accent" class="ml-5">
+                    <button mat-flat-button color="accent" class="ml-5 toolbar-button1">
                         <mat-icon fontIcon="backspace"></mat-icon>
                         limpar
                     </button>
