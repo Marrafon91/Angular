@@ -1,18 +1,22 @@
 import th from '@angular/common/locales/th';
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
-  imports: [],
+  imports: [FormsModule],
   selector: 'app-calculadora',
   styleUrl: './calculadora.css',
   templateUrl: './calculadora.html',
 })
 export class Calculadora {
-  numero1: number = 0;
-  numero2: number = 0;
+  numero1: number | null = null;
+  numero2: number | null = null;
   resultado: number = 0;
 
-  calcularResultado() {
-    this.resultado = this.numero1 + this.numero2;
+  calcularResultado(): void {
+    this.resultado = (this.numero1 ?? 0) + (this.numero2 ?? 0);
+
+    this.numero1 = null;
+    this.numero2 = null;
   }
 }

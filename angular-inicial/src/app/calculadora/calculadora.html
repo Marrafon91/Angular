@@ -2,7 +2,7 @@
   class="flex min-h-screen items-center justify-center bg-linear-to-br from-[#0f1f6d] via-[#293bd4] to-[#7c3aed] px-4 py-8 font-['Arial']"
 >
   <div class="w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl sm:p-8">
-    <form>
+    <form #frm="ngForm">
       <!-- Título -->
       <div class="mb-7 text-center">
         <div
@@ -44,6 +44,7 @@
           type="number"
           name="numero1"
           id="numero1"
+          [(ngModel)]="numero1"
           placeholder="Digite o primeiro número"
           class="w-full rounded-xl border border-gray-300 bg-gray-50 p-3.5 text-base text-gray-800 transition-all duration-300 outline-none placeholder:text-gray-400 focus:border-[#6366f1] focus:bg-white focus:ring-4 focus:ring-[#6366f1]/20"
         />
@@ -68,6 +69,7 @@
           type="number"
           name="numero2"
           id="numero2"
+          [(ngModel)]="numero2"
           placeholder="Digite o segundo número"
           class="w-full rounded-xl border border-gray-300 bg-gray-50 p-3.5 text-base text-gray-800 transition-all duration-300 outline-none placeholder:text-gray-400 focus:border-[#6366f1] focus:bg-white focus:ring-4 focus:ring-[#6366f1]/20"
         />
@@ -77,9 +79,10 @@
       <button
         type="button"
         class="w-full cursor-pointer rounded-xl bg-linear-to-r from-[#7c3aed] to-[#2563eb] p-3.5 text-base font-bold text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-xl active:translate-y-0 active:scale-[0.98]"
+        (click)="calcularResultado()"
       >
         <span class="flex items-center justify-center gap-2">
-          <span class="text-xl" ((click))="calcularResultado()">＋</span>
+          <p class="text-xl">＋</p>
           Somar
         </span>
       </button>
