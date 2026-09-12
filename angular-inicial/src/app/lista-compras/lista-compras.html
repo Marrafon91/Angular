@@ -35,15 +35,30 @@
         class="w-full rounded-xl border-2 border-gray-200 bg-gray-50 px-4 py-3 text-base text-gray-800 transition-all duration-300 outline-none placeholder:text-gray-400 focus:border-[#6366f1] focus:bg-white focus:ring-4 focus:ring-[#6366f1]/20 sm:flex-1"
       />
 
-      <button
-        type="submit"
-        class="w-full cursor-pointer rounded-xl bg-linear-to-r from-[#2563eb] to-[#7c3aed] px-6 py-3 font-bold text-white shadow-md transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-lg active:translate-y-0 active:scale-[0.98] sm:w-auto"
-      >
-        <span class="flex items-center justify-center gap-2">
-          <span class="text-lg">＋</span>
-          Adicionar
-        </span>
-      </button>
+      <div class="flex w-full flex-1 items-center justify-center gap-3">
+        <!-- Botão adicionar -->
+        <button
+          type="submit"
+          class="w-full cursor-pointer rounded-xl bg-linear-to-r from-[#2563eb] to-[#7c3aed] px-6 py-3 font-bold text-white shadow-md transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-lg active:translate-y-0 active:scale-[0.98] sm:w-auto"
+        >
+          <span class="flex items-center justify-center gap-2">
+            <span class="text-lg">＋</span>
+            Adicionar
+          </span>
+        </button>
+
+        <!-- Botão limpar -->
+        <button
+          type="button"
+          (click)="limparLista()"
+          class="w-full cursor-pointer rounded-xl bg-linear-to-r from-[#eb5d25] to-[#ed3a3a] px-6 py-3 font-bold text-white shadow-md transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-lg active:translate-y-0 active:scale-[0.98] sm:w-auto"
+        >
+          <span class="flex items-center justify-center gap-2">
+            <span class="text-lg">−</span>
+            Limpar
+          </span>
+        </button>
+      </div>
     </form>
 
     <!-- Tabela -->
@@ -64,35 +79,50 @@
         </thead>
 
         <tbody>
-          <!-- Item 1 -->
           @for (item of lista; track item.id) {
             <tr
               class="border-t border-gray-200 bg-white transition-colors duration-200 hover:bg-blue-50"
             >
+              <!-- ID -->
               <td
                 class="px-3 py-4 text-center text-sm font-semibold text-gray-500 sm:px-4"
               >
                 {{ item.id }}
               </td>
 
+              <!-- Nome -->
               <td class="px-3 py-4 text-left font-medium text-gray-700 sm:px-4">
-                {{ item.nome }}
+                <span
+                  [ngClass]="{
+                    'text-gray-400 line-through': item.comprado,
+                  }"
+                >
+                  {{ item.nome }}
+                </span>
               </td>
 
+              <!-- Checkbox -->
               <td class="px-3 py-4 text-center sm:px-4">
                 <input
                   type="checkbox"
+                  name="comprado-{{ item.id }}"
+                  [(ngModel)]="item.comprado"
                   class="h-5 w-5 cursor-pointer accent-[#4f46e5] transition-transform duration-200 hover:scale-110"
                 />
               </td>
             </tr>
           } @empty {
+            <!-- Lista vazia -->
             <tr class="border-t border-gray-200 bg-white">
               <td
                 colspan="3"
-                class="px-3 py-6 text-center font-medium text-gray-500 sm:px-4"
+                class="px-3 py-6 text-center font-medium text-red-500 sm:px-4"
               >
-                Nenhum item adicionado.
+                @if (erro) {
+                  {{ erro }}
+                } @else {
+                  A lista está vazia.
+                }
               </td>
             </tr>
           }
@@ -101,7 +131,6 @@
     </div>
 
     <!-- Rodapé da lista -->
-
     @if (lista.length > 0) {
       <div
         class="mt-4 flex items-center justify-between rounded-xl bg-indigo-50 px-4 py-3"
@@ -117,3 +146,4 @@
     }
   </div>
 </div>
+```
