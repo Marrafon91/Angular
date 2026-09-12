@@ -1,0 +1,107 @@
+<div
+  class="flex min-h-screen items-center justify-center bg-linear-to-br from-[#0f1f6d] via-[#293bd4] to-[#7c3aed] px-4 py-8 font-['Arial']"
+>
+  <div class="w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl sm:p-8">
+    <form>
+      <!-- Título -->
+      <div class="mb-7 text-center">
+        <div
+          class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-linear-to-br from-[#7c3aed] to-[#2563eb] text-3xl text-white shadow-lg"
+        >
+          🧮
+        </div>
+
+        <h2 class="text-3xl font-bold text-[#172554]">Calculadora</h2>
+
+        <p class="mt-2 text-sm text-gray-500">
+          Some dois números de forma rápida e fácil.
+        </p>
+      </div>
+
+      <!-- Linha decorativa -->
+      <div class="mb-7 h-1 overflow-hidden rounded-full bg-gray-200">
+        <div
+          class="h-full w-1/2 rounded-full bg-linear-to-r from-[#7c3aed] to-[#2563eb]"
+        ></div>
+      </div>
+
+      <!-- Número 1 -->
+      <div class="mb-5">
+        <label
+          for="numero1"
+          class="mb-2 flex items-center gap-2 text-base font-bold text-[#172554]"
+        >
+          <span
+            class="flex h-7 w-7 items-center justify-center rounded-full bg-linear-to-br from-[#7c3aed] to-[#2563eb] text-sm text-white"
+          >
+            1
+          </span>
+
+          Número 1
+        </label>
+
+        <input
+          type="number"
+          name="numero1"
+          id="numero1"
+          placeholder="Digite o primeiro número"
+          class="w-full rounded-xl border border-gray-300 bg-gray-50 p-3.5 text-base text-gray-800 transition-all duration-300 outline-none placeholder:text-gray-400 focus:border-[#6366f1] focus:bg-white focus:ring-4 focus:ring-[#6366f1]/20"
+        />
+      </div>
+
+      <!-- Número 2 -->
+      <div class="mb-6">
+        <label
+          for="numero2"
+          class="mb-2 flex items-center gap-2 text-base font-bold text-[#172554]"
+        >
+          <span
+            class="flex h-7 w-7 items-center justify-center rounded-full bg-linear-to-br from-[#7c3aed] to-[#2563eb] text-sm text-white"
+          >
+            2
+          </span>
+
+          Número 2
+        </label>
+
+        <input
+          type="number"
+          name="numero2"
+          id="numero2"
+          placeholder="Digite o segundo número"
+          class="w-full rounded-xl border border-gray-300 bg-gray-50 p-3.5 text-base text-gray-800 transition-all duration-300 outline-none placeholder:text-gray-400 focus:border-[#6366f1] focus:bg-white focus:ring-4 focus:ring-[#6366f1]/20"
+        />
+      </div>
+
+      <!-- Botão -->
+      <button
+        type="submit"
+        class="w-full cursor-pointer rounded-xl bg-linear-to-r from-[#7c3aed] to-[#2563eb] p-3.5 text-base font-bold text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-xl active:translate-y-0 active:scale-[0.98]"
+      >
+        <span class="flex items-center justify-center gap-2">
+          <span class="text-xl">＋</span>
+          Somar
+        </span>
+      </button>
+    </form>
+
+    <!-- Resultado -->
+    <div
+      class="mt-6 rounded-2xl bg-linear-to-br from-[#eef2ff] to-[#e0e7ff] p-5"
+    >
+      <div class="flex items-center gap-4">
+        <div
+          class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white text-2xl shadow-sm"
+        >
+          📊
+        </div>
+
+        <div>
+          <p class="text-sm font-bold text-[#6366f1]">Resultado:</p>
+
+          <p id="result" class="text-2xl font-bold text-[#172554]">Valor</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
