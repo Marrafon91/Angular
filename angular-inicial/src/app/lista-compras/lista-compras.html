@@ -21,11 +21,17 @@
     </div>
 
     <!-- Formulário -->
-    <form action="" class="mb-8 flex w-full flex-col gap-3 sm:flex-row">
+    <form
+      #frm="ngForm"
+      class="mb-8 flex w-full flex-col gap-3 sm:flex-row"
+      (ngSubmit)="adiconarItem()"
+    >
       <input
         type="text"
         id="item"
+        name="item"
         placeholder="Digite o nome do item"
+        [(ngModel)]="item"
         class="w-full rounded-xl border-2 border-gray-200 bg-gray-50 px-4 py-3 text-base text-gray-800 transition-all duration-300 outline-none placeholder:text-gray-400 focus:border-[#6366f1] focus:bg-white focus:ring-4 focus:ring-[#6366f1]/20 sm:flex-1"
       />
 
@@ -59,63 +65,55 @@
 
         <tbody>
           <!-- Item 1 -->
-          <tr
-            class="border-t border-gray-200 bg-white transition-colors duration-200 hover:bg-blue-50"
-          >
-            <td
-              class="px-3 py-4 text-center text-sm font-semibold text-gray-500 sm:px-4"
+          @for (item of lista; track item.id) {
+            <tr
+              class="border-t border-gray-200 bg-white transition-colors duration-200 hover:bg-blue-50"
             >
-              1
-            </td>
+              <td
+                class="px-3 py-4 text-center text-sm font-semibold text-gray-500 sm:px-4"
+              >
+                {{ item.id }}
+              </td>
 
-            <td class="px-3 py-4 text-left font-medium text-gray-700 sm:px-4">
-              Arroz
-            </td>
+              <td class="px-3 py-4 text-left font-medium text-gray-700 sm:px-4">
+                {{ item.nome }}
+              </td>
 
-            <td class="px-3 py-4 text-center sm:px-4">
-              <input
-                type="checkbox"
-                class="h-5 w-5 cursor-pointer accent-[#4f46e5] transition-transform duration-200 hover:scale-110"
-              />
-            </td>
-          </tr>
-
-          <!-- Item 2 -->
-          <tr
-            class="border-t border-gray-200 bg-gray-50 transition-colors duration-200 hover:bg-blue-50"
-          >
-            <td
-              class="px-3 py-4 text-center text-sm font-semibold text-gray-500 sm:px-4"
-            >
-              2
-            </td>
-
-            <td class="px-3 py-4 text-left font-medium text-gray-700 sm:px-4">
-              Maçã
-            </td>
-
-            <td class="px-3 py-4 text-center sm:px-4">
-              <input
-                type="checkbox"
-                class="h-5 w-5 cursor-pointer accent-[#4f46e5] transition-transform duration-200 hover:scale-110"
-              />
-            </td>
-          </tr>
+              <td class="px-3 py-4 text-center sm:px-4">
+                <input
+                  type="checkbox"
+                  class="h-5 w-5 cursor-pointer accent-[#4f46e5] transition-transform duration-200 hover:scale-110"
+                />
+              </td>
+            </tr>
+          } @empty {
+            <tr class="border-t border-gray-200 bg-white">
+              <td
+                colspan="3"
+                class="px-3 py-6 text-center font-medium text-gray-500 sm:px-4"
+              >
+                Nenhum item adicionado.
+              </td>
+            </tr>
+          }
         </tbody>
       </table>
     </div>
 
     <!-- Rodapé da lista -->
-    <div
-      class="mt-4 flex items-center justify-between rounded-xl bg-indigo-50 px-4 py-3"
-    >
-      <span class="text-sm font-medium text-gray-600"> Total de itens </span>
 
-      <span
-        class="rounded-full bg-indigo-600 px-3 py-1 text-sm font-bold text-white"
+    @if (lista.length > 0) {
+      <div
+        class="mt-4 flex items-center justify-between rounded-xl bg-indigo-50 px-4 py-3"
       >
-        2
-      </span>
-    </div>
+        <span class="text-sm font-medium text-gray-600"> Total de itens </span>
+
+        <span
+          class="rounded-full bg-indigo-600 px-3 py-1 text-sm font-bold text-white"
+        >
+          {{ lista.length }}
+        </span>
+      </div>
+    }
   </div>
 </div>
