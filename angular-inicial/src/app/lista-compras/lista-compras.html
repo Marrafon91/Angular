@@ -1,0 +1,121 @@
+<div
+  class="flex min-h-screen items-center justify-center bg-linear-to-br from-[#dbeafe] via-[#eff6ff] to-[#ede9fe] px-4 py-8 font-['Arial']"
+>
+  <!-- Card -->
+  <div class="w-full max-w-2xl rounded-2xl bg-white p-5 shadow-xl sm:p-8">
+    <!-- Título -->
+    <div class="mb-7 text-center">
+      <div
+        class="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-2xl bg-linear-to-br from-[#2563eb] to-[#7c3aed] text-2xl text-white shadow-md"
+      >
+        🛒
+      </div>
+
+      <h1 class="text-2xl font-bold text-[#1e293b] sm:text-3xl">
+        Lista de Compras
+      </h1>
+
+      <p class="mt-2 text-sm text-gray-500">
+        Adicione os itens que você precisa comprar.
+      </p>
+    </div>
+
+    <!-- Formulário -->
+    <form action="" class="mb-8 flex w-full flex-col gap-3 sm:flex-row">
+      <input
+        type="text"
+        id="item"
+        placeholder="Digite o nome do item"
+        class="w-full rounded-xl border-2 border-gray-200 bg-gray-50 px-4 py-3 text-base text-gray-800 transition-all duration-300 outline-none placeholder:text-gray-400 focus:border-[#6366f1] focus:bg-white focus:ring-4 focus:ring-[#6366f1]/20 sm:flex-1"
+      />
+
+      <button
+        type="submit"
+        class="w-full cursor-pointer rounded-xl bg-linear-to-r from-[#2563eb] to-[#7c3aed] px-6 py-3 font-bold text-white shadow-md transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-lg active:translate-y-0 active:scale-[0.98] sm:w-auto"
+      >
+        <span class="flex items-center justify-center gap-2">
+          <span class="text-lg">＋</span>
+          Adicionar
+        </span>
+      </button>
+    </form>
+
+    <!-- Tabela -->
+    <div class="overflow-hidden rounded-xl border border-gray-200">
+      <table class="w-full border-collapse">
+        <thead class="bg-linear-to-r from-[#2563eb] to-[#4f46e5] text-white">
+          <tr>
+            <th class="w-16 px-3 py-3 text-center text-sm font-bold sm:px-4">
+              #
+            </th>
+
+            <th class="px-3 py-3 text-left text-sm font-bold sm:px-4">Item</th>
+
+            <th class="w-20 px-3 py-3 text-center text-sm font-bold sm:px-4">
+              Feito
+            </th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <!-- Item 1 -->
+          <tr
+            class="border-t border-gray-200 bg-white transition-colors duration-200 hover:bg-blue-50"
+          >
+            <td
+              class="px-3 py-4 text-center text-sm font-semibold text-gray-500 sm:px-4"
+            >
+              1
+            </td>
+
+            <td class="px-3 py-4 text-left font-medium text-gray-700 sm:px-4">
+              Arroz
+            </td>
+
+            <td class="px-3 py-4 text-center sm:px-4">
+              <input
+                type="checkbox"
+                class="h-5 w-5 cursor-pointer accent-[#4f46e5] transition-transform duration-200 hover:scale-110"
+              />
+            </td>
+          </tr>
+
+          <!-- Item 2 -->
+          <tr
+            class="border-t border-gray-200 bg-gray-50 transition-colors duration-200 hover:bg-blue-50"
+          >
+            <td
+              class="px-3 py-4 text-center text-sm font-semibold text-gray-500 sm:px-4"
+            >
+              2
+            </td>
+
+            <td class="px-3 py-4 text-left font-medium text-gray-700 sm:px-4">
+              Maçã
+            </td>
+
+            <td class="px-3 py-4 text-center sm:px-4">
+              <input
+                type="checkbox"
+                class="h-5 w-5 cursor-pointer accent-[#4f46e5] transition-transform duration-200 hover:scale-110"
+              />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Rodapé da lista -->
+    <div
+      class="mt-4 flex items-center justify-between rounded-xl bg-indigo-50 px-4 py-3"
+    >
+      <span class="text-sm font-medium text-gray-600"> Total de itens </span>
+
+      <span
+        class="rounded-full bg-indigo-600 px-3 py-1 text-sm font-bold text-white"
+      >
+        2
+      </span>
+    </div>
+  </div>
+</div>
