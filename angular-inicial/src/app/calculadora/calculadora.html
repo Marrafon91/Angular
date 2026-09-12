@@ -2,7 +2,7 @@
   class="flex min-h-screen items-center justify-center bg-linear-to-br from-[#0f1f6d] via-[#293bd4] to-[#7c3aed] px-4 py-8 font-['Arial']"
 >
   <div class="w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl sm:p-8">
-    <form #frm="ngForm">
+    <form #frm="ngForm" (ngSubmit)="calcularResultado()">
       <!-- Título -->
       <div class="mb-7 text-center">
         <div
@@ -77,9 +77,8 @@
 
       <!-- Botão -->
       <button
-        type="button"
+        type="submit"
         class="w-full cursor-pointer rounded-xl bg-linear-to-r from-[#7c3aed] to-[#2563eb] p-3.5 text-base font-bold text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-xl active:translate-y-0 active:scale-[0.98]"
-        (click)="calcularResultado()"
       >
         <span class="flex items-center justify-center gap-2">
           <p class="text-xl">＋</p>
@@ -89,24 +88,44 @@
     </form>
 
     <!-- Resultado -->
-    <div
-      class="mt-6 rounded-2xl bg-linear-to-br from-[#eef2ff] to-[#e0e7ff] p-5"
-    >
-      <div class="flex items-center gap-4">
-        <div
-          class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white text-2xl shadow-sm"
-        >
-          📊
-        </div>
+    @if (resultado) {
+      <div
+        class="mt-6 rounded-2xl bg-linear-to-br from-[#eef2ff] to-[#e0e7ff] p-5"
+      >
+        <div class="flex items-center gap-4">
+          <div
+            class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white text-2xl shadow-sm"
+          >
+            📊
+          </div>
 
-        <div>
-          <p class="text-sm font-bold text-[#6366f1]">Resultado:</p>
+          <div>
+            <p class="text-sm font-bold text-[#6366f1]">Resultado:</p>
 
-          <span id="result" class="text-2xl font-bold text-[#172554]">{{
-            resultado
-          }}</span>
+            <span id="result" class="text-2xl font-bold text-[#172554]">{{
+              resultado
+            }}</span>
+          </div>
         </div>
       </div>
-    </div>
+    } @else {
+      <div
+        class="mt-6 rounded-2xl bg-linear-to-br from-[#eef2ff] to-[#e0e7ff] p-5"
+      >
+        <div class="flex items-center gap-4">
+          <div
+            class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white text-2xl shadow-sm"
+          >
+            📊
+          </div>
+
+          <div>
+            <p class="text-sm font-bold text-[#6366f1]">Seu resultado vai aparecer aqui</p>
+
+            <span id="result" class="text-2xl font-bold text-[#172554]"></span>
+          </div>
+        </div>
+      </div>
+    }
   </div>
 </div>

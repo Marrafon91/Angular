@@ -1,4 +1,3 @@
-import th from '@angular/common/locales/th';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
