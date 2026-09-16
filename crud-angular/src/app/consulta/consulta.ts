@@ -9,6 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { ClienteService } from '../cliente.service';
 import { Cliente } from '../cadastro/cliente';
 import { Router } from '@angular/router';
+import fa from '@angular/common/locales/fa';
 
 @Component({
   imports: [
@@ -35,6 +36,7 @@ export class Consulta implements OnInit {
     'email',
     'acoes',
   ];
+  deletando: boolean = false;
 
   constructor(
     private service: ClienteService,
@@ -51,5 +53,15 @@ export class Consulta implements OnInit {
 
   peparaEditar(id: string) {
     this.router.navigate(['/cadastro'], { queryParams: { id: id } });
+  }
+
+  preparaDeletar() {
+    this.deletando = true;
+  }
+
+  deletar(cliente: Cliente) {
+    this.service.deletar(cliente);
+    this.listaClientes = this.service.pesquisarClientes('');
+    this.deletando = false;
   }
 }
