@@ -1,7 +1,11 @@
 ```html
 <div class="flex flex-row items-center justify-center">
   <div class="flex w-225 flex-col">
-    <form class="mt-15 rounded-md shadow-md" #buscaForm="ngForm" (ngSubmit)="pesquisar()">
+    <form
+      class="mt-15 rounded-md shadow-md"
+      #buscaForm="ngForm"
+      (ngSubmit)="pesquisar()"
+    >
       <mat-card appearance="outlined">
         <mat-card-header>
           <mat-card-title>Consulta</mat-card-title>
@@ -12,7 +16,13 @@
             <div class="flex w-200 flex-col">
               <mat-form-field class="w-full">
                 <mat-label>Nome:</mat-label>
-                <input name="nomeBusca" [(ngModel)]="nomeBusca" matInput placeholder="Ex: Maria" ngModel />
+                <input
+                  name="nomeBusca"
+                  [(ngModel)]="nomeBusca"
+                  matInput
+                  placeholder="Ex: Maria"
+                  ngModel
+                />
               </mat-form-field>
             </div>
           </div>
@@ -70,6 +80,21 @@
             <th mat-header-cell *matHeaderCellDef>E-mail</th>
             <td mat-cell *matCellDef="let cliente">
               {{ cliente.email }}
+            </td>
+          </ng-container>
+
+          <!-- Acoes -->
+          <ng-container matColumnDef="acoes">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let cliente">
+              <button
+                type="submit"
+                mat-button
+                (click)="peparaEditar(cliente.id)"
+              >
+                <mat-icon fontIcon="edit"></mat-icon>
+                Editar
+              </button>
             </td>
           </ng-container>
 
