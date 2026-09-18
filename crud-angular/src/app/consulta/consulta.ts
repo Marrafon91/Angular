@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
@@ -9,7 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { ClienteService } from '../cliente.service';
 import { Cliente } from '../cadastro/cliente';
 import { Router } from '@angular/router';
-import fa from '@angular/common/locales/fa';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   imports: [
@@ -28,6 +28,7 @@ import fa from '@angular/common/locales/fa';
 export class Consulta implements OnInit {
   nomeBusca: string = '';
   listaClientes: Cliente[] = [];
+  snack: MatSnackBar = inject(MatSnackBar);
   colunasTable: string[] = [
     'id',
     'nome',
@@ -61,5 +62,10 @@ export class Consulta implements OnInit {
   deletar(cliente: Cliente) {
     this.service.deletar(cliente);
     this.listaClientes = this.service.pesquisarClientes('');
+    this.mostrarMensagem('Deletado com sucesso! ');
+  }
+
+  mostrarMensagem(message: string) {
+    this.snack.open(message, 'OK');
   }
 }
