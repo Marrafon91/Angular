@@ -7,14 +7,13 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
+import { MatSelectModule } from '@angular/material/select';
 
 import { Cliente } from './cliente';
 import { ClienteService } from '../cliente.service';
 import { BrasilapiService } from '../brasilapi.service';
 import { Estado, Municipio } from '../brasil.models';
-import { MatSelectModule } from '@angular/material/select';
 
 @Component({
   selector: 'app-cadastro',
@@ -28,17 +27,17 @@ import { MatSelectModule } from '@angular/material/select';
     MatButtonModule,
     NgxMaskDirective,
     MatSelectModule,
-],
+  ],
   providers: [provideNgxMask()],
   templateUrl: './cadastro.html',
   styleUrl: './cadastro.css',
 })
 export class Cadastro implements OnInit {
   cliente: Cliente = Cliente.newCliente();
-  atualizando = false;
-  snack: MatSnackBar = inject(MatSnackBar);
+  snack = inject(MatSnackBar);
   estados: Estado[] = [];
   municipios: Municipio[] = [];
+  atualizando = false;
 
   constructor(
     private service: ClienteService,
@@ -57,33 +56,70 @@ export class Cadastro implements OnInit {
         if (clienteEncontrado) {
           this.atualizando = true;
           this.cliente = clienteEncontrado;
+          console.log('Cliente encontrado:', this.cliente);
         }
       }
+      this.carregarUFs();
     });
-
-    this.carregarUFs();
   }
 
-  carregarUFs() {
+  carregarUFs(): void {
     this.brasilApiService.listarUFs().subscribe({
-      next: (listaEstados) => (this.estados = listaEstados),
-      error: (erro) => console.log('Ocorreu um erro ', erro),
+      next: (listaEstados) => {
+        this.estados = listaEstados;
+        console.log('Estados carregados:', this.estados);
+        console.log('UF do cliente:', this.cliente.uf);
+        if (this.cliente.uf) {
+          this.carregarMunicipios(this.cliente.uf);
+        }
+      },
+
+      error: (erro) => {
+        console.log('Erro ao carregar estados:', erro);
+      },
     });
   }
 
-  salvar() {
+  carregarMunicipios(uf: string): void {
+    if (!uf) {
+      this.municipios = [];
+      this.cliente.municipio = undefined;
+      return;
+    }
+
+    this.brasilApiService.listarMunicipios(uf).subscribe({
+      next: (listaMunicipios) => {
+        this.municipios = listaMunicipios;
+
+        console.log('Municípios carregados:', this.municipios);
+        console.log('Município do cliente:', this.cliente.municipio);
+      },
+
+      error: (erro) => {
+        console.log('Erro ao carregar municípios:', erro);
+      },
+    });
+  }
+
+  salvar(): void {
     if (!this.atualizando) {
       this.service.salvar(this.cliente);
-      this.cliente = Cliente.newCliente();
-      this.mostrarMensagem('Salvo com sucesso! ');
+      this.mostrarMensagem('Salvo com sucesso!');
+      this.limpar();
     } else {
       this.service.atualizar(this.cliente);
+      this.mostrarMensagem('Atualizado com sucesso!');
       this.router.navigate(['/consulta']);
-      this.mostrarMensagem('Atualizado com sucesso! ');
     }
   }
 
-  mostrarMensagem(message: string) {
+  limpar(): void {
+    this.cliente = Cliente.newCliente();
+    this.municipios = [];
+    this.atualizando = false;
+  }
+
+  mostrarMensagem(message: string): void {
     this.snack.open(message, 'OK');
   }
 }

@@ -5,5 +5,5 @@ export interface Estado {
 
 export interface Municipio {
   nome: string;
-  codigo_ibge: string;
+  codigo_ibge?: string;
 }
