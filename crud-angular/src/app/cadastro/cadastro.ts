@@ -14,6 +14,7 @@ import { Cliente } from './cliente';
 import { ClienteService } from '../cliente.service';
 import { BrasilapiService } from '../brasilapi.service';
 import { Estado, Municipio } from '../brasil.models';
+import { MatSelectModule } from '@angular/material/select';
 
 @Component({
   selector: 'app-cadastro',
@@ -26,7 +27,8 @@ import { Estado, Municipio } from '../brasil.models';
     MatIconModule,
     MatButtonModule,
     NgxMaskDirective,
-  ],
+    MatSelectModule,
+],
   providers: [provideNgxMask()],
   templateUrl: './cadastro.html',
   styleUrl: './cadastro.css',
