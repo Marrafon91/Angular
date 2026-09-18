@@ -4,13 +4,17 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { Cliente } from './cliente';
 import { FormsModule } from '@angular/forms';
-import { ClienteService } from '../cliente.service';
 import { ActivatedRoute, Router } from '@angular/router';
+
+import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
+
+import { Cliente } from './cliente';
+import { ClienteService } from '../cliente.service';
 
 @Component({
   selector: 'app-cadastro',
+  standalone: true,
   imports: [
     FormsModule,
     MatCardModule,
@@ -18,13 +22,15 @@ import { ActivatedRoute, Router } from '@angular/router';
     MatInputModule,
     MatIconModule,
     MatButtonModule,
+    NgxMaskDirective,
   ],
+  providers: [provideNgxMask()],
   templateUrl: './cadastro.html',
   styleUrl: './cadastro.css',
 })
 export class Cadastro implements OnInit {
   cliente: Cliente = Cliente.newCliente();
-  atualizando: boolean = false;
+  atualizando = false;
 
   constructor(
     private service: ClienteService,
@@ -33,11 +39,11 @@ export class Cadastro implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.route.queryParamMap.subscribe((query: any) => {
-      const params = query['params'];
-      const id = params['id'];
+    this.route.queryParamMap.subscribe((query) => {
+      const id = query.get('id');
+
       if (id) {
-        let clienteEncontrado = this.service.buscarClientePorId(id);
+        const clienteEncontrado = this.service.buscarClientePorId(id);
 
         if (clienteEncontrado) {
           this.atualizando = true;
